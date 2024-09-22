@@ -1,5 +1,15 @@
 using 'example.bicep'
 
+import { GenerateStorageResourceName } from 'functions/naming.bicep'
+import { defaultTags } from 'base.bicep'
+
+/*
+
+Assign value from imported defaultTags
+
+*/
+param tags = defaultTags
+
 /*
 
 1 - 60 characters
@@ -21,18 +31,4 @@ Name must be unique within global or per domain. See note below.
 
 param functionAppName = 'foo-api'
 
-param applicationTags = {
-  env: 'development'
-  instance: 'development'
-  team: 'foo'
-  build: 'build' //would need to pass this in to the az deployment as addional param
-}
-
-/*
-
-Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.
-Your storage account name must be unique within Azure. No two storage accounts can have the same name.
-
-*/
-
-param storageAccountName =  '{environment}-{group}-{applicationName}'
+param storageAccountName =  GenerateStorageResourceName(tags, 'fapi')

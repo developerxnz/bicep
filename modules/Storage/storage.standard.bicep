@@ -18,7 +18,7 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
     name: storageAccountName
     // Non-required parameters
     kind: 'Storage'
-    location: '<location>'
+    location: resourceGroup().location
     tags: tags
   }
 }

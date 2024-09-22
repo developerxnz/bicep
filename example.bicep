@@ -2,7 +2,7 @@ import { teamTags } from 'types/types.bicep'
 
 param appServiceName string
 
-param applicationTags teamTags
+param tags teamTags
 
 param storageAccountName string
 
@@ -12,7 +12,7 @@ module servicePlanDeployment 'templates/function-app-module.bicep' = {
   name: 'ServicePlanDeployment'
   params: {
     appServiceName: appServiceName
-    tags: applicationTags
+    tags: tags
     functionAppName:functionAppName
     storageAccountName:storageAccountName
   }

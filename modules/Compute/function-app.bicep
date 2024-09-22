@@ -10,11 +10,11 @@ resource appService 'Microsoft.Web/serverfarms@2022-09-01' existing = {
 
 param storageAccountName string
 
-param tags teamTags
-
 resource storageAccount 'Microsoft.Web/serverfarms@2022-09-01' existing = {  
   name: storageAccountName
 }
+
+param tags teamTags
 
 module site 'br/public:avm/res/web/site:0.8.0' = {
   name: 'FunctionApp'
@@ -26,6 +26,9 @@ module site 'br/public:avm/res/web/site:0.8.0' = {
 
     // Non-required parameters
     storageAccountResourceId: storageAccount.id
+    appSettingsKeyValuePairs: {
+      mysetting: 'myvalue'
+    }
 
     tags: tags
   }

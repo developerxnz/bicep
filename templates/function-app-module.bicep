@@ -3,6 +3,7 @@
 Standard Requirements
 - App Service Plan
 - Function App
+  - Requires Access to Keyvault
 - Storage Account
 
 */
