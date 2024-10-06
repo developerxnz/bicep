@@ -39,3 +39,5 @@ module site '../modules/compute/web-app.bicep' = {
     tags:tags
   }
 }
+
+output resourceId string = site.outputs.resourceId

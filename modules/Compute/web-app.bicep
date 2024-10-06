@@ -29,3 +29,4 @@ module site 'br/public:avm/res/web/site:0.8.0' = {
   }
 }
 
+output resourceId string = site.outputs.resourceId
