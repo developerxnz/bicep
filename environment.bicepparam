@@ -1,7 +1,7 @@
 using 'example.bicep'
 
 import { GenerateStorageResourceName } from 'functions/naming.bicep'
-import { defaultTags } from 'base.bicep'
+import { defaultTags } from 'common.bicep'
 
 /*
 
