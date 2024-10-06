@@ -9,38 +9,36 @@ Standard Requirements
 */
 
 import { teamTags } from '../types/types.bicep'
+import { GenerateStorageResourceName }  from '../functions/naming.bicep'
 
 @description('App Service Plan Name')
-param appServiceName string
+param appServiceResourceId string
 
 param tags teamTags
 
-param functionAppName string
+param appname string
 
-param storageAccountName string
+param appSettings object
 
-module serverfarm '../modules/compute/app-service-plan.bicep' = {
-  name: '${appServiceName}Deployment'
-  params: {
-    tags: tags
-    appServiceName:appServiceName
-  }
-}
+var storageAccountName = GenerateStorageResourceName(tags, appname)
 
 module storageAccountDeployment '../modules/Storage/storage.standard.bicep' = {
   name: '${storageAccountName}Deployment'
   params: {
-    storageAccountName:storageAccountName
+    storageAccountName: storageAccountName
     tags:tags
   }
 }
 
 module site '../modules/compute/function-app.bicep' = {
-  name: '${functionAppName}Deployment'
+  name: '${appname}Deployment'
   params: {
-    appServiceName:appServiceName
-    functionAppName:functionAppName
-    storageAccountName:storageAccountName
+    appsettings: appSettings
+    appname:appname
+    appServiceResourceId:appServiceResourceId
+    storageaAcountResourceId: storageAccountDeployment.outputs.resourceId
     tags:tags
   }
 }
+
+output resourceId string = site.outputs.resourceId

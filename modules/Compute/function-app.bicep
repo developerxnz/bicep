@@ -1,35 +1,35 @@
+metadata name = 'Function App Configuration'
+metadata description = 'This module deploys a Function app along with a storage account.'
+metadata owner = 'Azure/module-maintainers'
+
 import  { teamTags } from '../../types/types.bicep'
 
-param functionAppName string
+param appServiceResourceId string
 
-param appServiceName string
+param appname string
 
-resource appService 'Microsoft.Web/serverfarms@2022-09-01' existing = {  
-  name: appServiceName
-}
+param storageaAcountResourceId string
 
-param storageAccountName string
+param tags  teamTags
 
-resource storageAccount 'Microsoft.Web/serverfarms@2022-09-01' existing = {  
-  name: storageAccountName
-}
-
-param tags teamTags
+param appsettings object
 
 module site 'br/public:avm/res/web/site:0.8.0' = {
   name: 'FunctionApp'
   params: {
     // Required parameters
     kind: 'functionapp'
-    name: functionAppName
-    serverFarmResourceId: appService.id
+    name: appname
+    serverFarmResourceId: appServiceResourceId
 
     // Non-required parameters
-    storageAccountResourceId: storageAccount.id
-    appSettingsKeyValuePairs: {
-      mysetting: 'myvalue'
-    }
+    storageAccountRequired: true
+    appSettingsKeyValuePairs: appsettings
+    storageAccountResourceId: storageaAcountResourceId
 
     tags: tags
   }
 }
+
+
+output resourceId string = site.outputs.resourceId

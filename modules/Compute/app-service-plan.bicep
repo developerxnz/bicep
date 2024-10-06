@@ -1,9 +1,9 @@
-import { teamTags } from '../../types/types.bicep'
-
 metadata name = 'App Service Plan'
 metadata summary = '''
 Add documenation for module
 '''
+
+import { teamTags } from '../../types/types.bicep'
 
 @description('App Service Plan Name')
 param appServiceName string
@@ -41,3 +41,5 @@ module serverfarm 'br/public:avm/res/web/serverfarm:0.2.2' = {
     zoneRedundant: false
   }
 }
+
+output resourceId string = serverfarm.outputs.resourceId

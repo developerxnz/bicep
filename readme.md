@@ -31,3 +31,8 @@ Testing bicep via what-if
 - requires resource group to exist
 
 az deployment group what-if --resource-group testbicep --name rollout01 --template-file example.bicep --parameters params.bicepparam
+
+
+## Push tp ACR
+
+az bicep publish --file localfilename.bicep --target br:sleuth.azurecr.io/bicep/modules/pathorfilename:0.0.1

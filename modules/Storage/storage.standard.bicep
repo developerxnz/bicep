@@ -22,3 +22,5 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.2' = {
     tags: tags
   }
 }
+
+output resourceId string = storageAccount.outputs.resourceId
