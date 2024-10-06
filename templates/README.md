@@ -17,19 +17,20 @@ A Function App requires the following
 
 >This module manages the creation and naming of the storage account. If you need to control the naming of the storage account you can create a new template that takes a storage account name as a parameter.
 
-***Module Parameters***
+***Required Parameters***
 
-`appServiceResourceId`: the resource id for the App Service Plan
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| `appServiceResourceId` | string | the resource id for the App Service Plan |
+| `tags` | object | the tags to apply to the resources in the module |
+| `appname` | string | the application name 
+| `appSettings` | object | the app settings to apply to the function app 
 
-`tags`: the tags to apply to the resources in the module
+***Output Values***
 
-`appname`: the application name 
-
-`appSettings`: the app settings to apply to the function app 
-
-***Module Output Values***
-
-`resourceId`: the resourceId for the function app
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| `resourceId` |  string  |the resourceId for the function app
 
 Web Application
 ---
@@ -42,16 +43,17 @@ A Function App requires the following
 
 >This module manages the creation and naming of the storage account. If you need to control the naming of the storage account you can create a new template that takes a storage account name as a parameter.
 
-***Module Input Parameters***
+***Required Parameters***
 
-`appServiceResourceId`: the resource id for the App Service Plan
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| `appServiceResourceId` | string | the resource id for the App Service Plan |
+| `tags` | object | the tags to apply to the resources in the module |
+| `appname` | string | the application name 
+| `appSettings` | object | the app settings to apply to the function app 
 
-`tags`: the tags to apply to the resources in the module
+***Output Values***
 
-`appname`: the application name 
-
-`appSettings`: the app settings to apply to the function app 
-
-***Module Output Values***
-
-`resourceId`: the resourceId for the web app
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| `resourceId` |  string  |the resourceId for the function app
