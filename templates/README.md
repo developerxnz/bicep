@@ -6,7 +6,7 @@ The templates make use of custom modules and AVM (Azure Verified Modules)
 
 Templates are use to combine modules when creating common resources.
 
-Function Application
+Function Application Template
 ---
 [Function App Module](function-app-module.bicep)
 
@@ -32,7 +32,7 @@ A Function App requires the following
 | ---- | ---- | ---- |
 | `resourceId` |  string  |the resourceId for the function app
 
-Web Application
+Web Application Template
 ---
 [Web App Module](web-app-module.bicep)
 
