@@ -1,0 +1,39 @@
+parameters:
+  - name: applicationName:
+    type: string
+  - name: subscriptionName
+    type: string
+  - name: resourceGroupName
+    type: string
+  - name: packageName
+    type: string
+  - name: appType
+    type: string
+    default: 'webApp'
+    values:
+    - 'webApp'
+    - 'webAppLinux'
+
+  steps:
+  - task: AzureCLI@2
+  display: 'Stopping ${{ parameters.applicationName }} (${{ parameters.applicationName }})'
+  inputs:
+    azureSubscription: ${{ parameters.subscriptionName }}
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az webapp stop --name ${{ parameters.applicationName }} --resource-group ${{ parameters.resourceGroup }} 
+
+  - task: AzureRmWebAppDeployment@4
+  display: 'Deploying and Starting ${{ parameters.applicationName }} (${{ parameters.applicationName }})'
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: ${{ parameters.subscriptionName }}
+    appType: ${{ parameters.applicationName }}
+    WebAppName: ${{ parameters.applicationName }}
+    deployToSlotOrASE: false
+    ResourceGroupName: ${{ pamarameters.resourceGroupName }}
+    packageForLinux: '${{ parameters.packageName }}'
+    ScriptType: 'Inline Script'
+    InlineScript: |
+    az webapp start --name ${{ parameters.applicationName }} --resource-group ${{ parameters.resourceGroup }} 
